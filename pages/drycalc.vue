@@ -99,7 +99,7 @@ const fetchKC = async () => {
   }
   loading.value = true;
   try {
-    const response = await fetch(`http://localhost:3001/api/hiscore?username=${username.value}`, {
+    const response = await fetch(`https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player=${username.value}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
