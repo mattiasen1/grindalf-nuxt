@@ -1,0 +1,2 @@
+# grindalf-nuxt
+Testing nuxt
