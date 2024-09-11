@@ -2,7 +2,8 @@
     "routes": [
       {
         "route": "/api/*",
-        "allowedRoles": ["anonymous"]
+        "allowedRoles": ["anonymous"],
+        "rewrite": "https://secure.runescape.com/:splat"
       }
     ],
     "navigationFallback": {
@@ -15,13 +16,5 @@
     },
     "globalHeaders": {
       "Access-Control-Allow-Origin": "*"
-    },
-    "forwarding": {
-      "api": {
-        "target": "https://secure.runescape.com",
-        "pathRewrite": {
-          "^/api": ""
-        }
-      }
     }
   }
