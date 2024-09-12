@@ -99,7 +99,7 @@ const fetchKC = async () => {
   }
   loading.value = true;
   try {
-    const response = await fetch(`http://localhost:3001/api/hiscore?username=${username.value}`, {
+    const response = await fetch(`https://grindalf.azurewebsites.net/api/osrs?username=${username.value}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
