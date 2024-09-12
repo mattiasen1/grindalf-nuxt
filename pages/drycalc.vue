@@ -99,7 +99,7 @@ const fetchKC = async () => {
   }
   loading.value = true;
   try {
-    const response = await fetch(`https://grindalf.azurewebsites.net/api/osrs?username=${username.value}`, {
+    const response = await fetch(`http://localhost:3001/api/hiscore?username=${username.value}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ const fetchKC = async () => {
       throw new Error('Network response was not ok');
     }
     console.log('response', response);
-    console.log('response.json()', response.json());
+    console.log('response.body()', response.body);
     const data: HiscoreResponse = await response.json();
     console.log('selected boss: ', selectedBoss.value);
     console.log(data.activities.find((activity: Activity) => activity.name === bosses.find(boss => boss.value === selectedBoss.value)?.text));

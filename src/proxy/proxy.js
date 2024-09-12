@@ -8,7 +8,7 @@ const port = 3001;
 
 app.get('/api/hiscore', async (req, res) => {
   const { username } = req.query;
-  const url = `https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player=${username}`;
+  const url = `https://grindalf.azurewebsites.net/api/osrs?username=${username}`;
   console.log(url);
   try {
     const response = await axios.get(url);
