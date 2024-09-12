@@ -110,6 +110,8 @@ const fetchKC = async () => {
       isError.value = true;
       throw new Error('Network response was not ok');
     }
+    console.log('response', response);
+    console.log('response.json()', response.json());
     const data: HiscoreResponse = await response.json();
     console.log('selected boss: ', selectedBoss.value);
     console.log(data.activities.find((activity: Activity) => activity.name === bosses.find(boss => boss.value === selectedBoss.value)?.text));
