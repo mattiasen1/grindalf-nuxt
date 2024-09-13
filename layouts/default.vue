@@ -5,6 +5,7 @@
         <nav class="font-bold text-xl">
           <NuxtLink to="/">Home</NuxtLink>
           <NuxtLink to="/drycalc">Dry Calculator</NuxtLink>
+          <NuxtLink to="/stat-compare">Compare Stats</NuxtLink>
         </nav>
       </header>
       <main>

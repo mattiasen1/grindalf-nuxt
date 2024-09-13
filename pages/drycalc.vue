@@ -46,7 +46,7 @@
                 You have killed {{ bossList.find(boss => boss.value == selectedBoss)?.text }} {{ killCount }} times!
             </div>
             <div v-if="probability !== null && !loading" class="probability-text">
-                Probability of having received {{ dropsReceived }} {{ selectedItem?.name }} drop(s): {{ (probability * 100).toFixed(4) }}%
+                Probability of having received {{ confirmedDropsReceived }} {{ selectedItem?.name }} drop(s): {{ (probability * 100).toFixed(4) }}%
             </div>
             <!-- <div v-if="probability !== null && !loading" class="comment-text">
               {{ getComment(probability) }}
@@ -70,6 +70,7 @@ const username = ref('');
 const selectedBoss = ref('');
 const selectedItem = ref<Item | null>(null);
 const dropsReceived = ref<number | null>(null);
+const confirmedDropsReceived = ref(0);
 const bossImage = ref('');
 const killCount = ref<number | null>(null);
 const loading = ref(false);
@@ -81,7 +82,7 @@ const loadImage = async () => {
   selectedItem.value = null;
   if (selectedBoss.value) {
     try {
-      const imageModule = await import(`~/assets/images/${selectedBoss.value}.png`);
+      const imageModule = await import(`~/assets/images/bosses/${selectedBoss.value}.png`);
       bossImage.value = imageModule.default;
     } catch (error) {
       console.error('Failed to load image for ', selectedBoss.value, '. Failed with error:', error);
@@ -93,12 +94,14 @@ const loadImage = async () => {
 };
 
 const fetchKC = async () => {
+  confirmedDropsReceived.value = dropsReceived.value ?? 0;
   if (!username.value || !selectedBoss.value || !selectedItem.value || dropsReceived.value === null) {
     alert('Please fill in all required fields.');
     return;
   }
   loading.value = true;
   try {
+    //const response = await fetch(`http://localhost:3001/api/hiscore?username=${username.value}`, {
     const response = await fetch(`https://grindalf.azurewebsites.net/api/osrs?username=${username.value}`, {
       method: 'GET',
       headers: {
