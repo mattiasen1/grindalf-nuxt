@@ -80,6 +80,7 @@ const isError = ref(false);
 const loadImage = async () => {
   killCount.value = -1;
   selectedItem.value = null;
+  probability.value = null;
   if (selectedBoss.value) {
     try {
       const imageModule = await import(`~/assets/images/bosses/${selectedBoss.value}.png`);
